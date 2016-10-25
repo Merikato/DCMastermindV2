@@ -211,6 +211,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleNewGameClick(ActionEvent event) {
         resetGame();
+        try {
+            client.startGame();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void resetGame() {
@@ -230,11 +235,7 @@ public class FXMLDocumentController implements Initializable {
                 HBox hbox = (HBox) content;
                 hbox.setVisible(false);
             }
-            try {
-                client.startGame();
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
 
         gameboard.setDisable(false);
@@ -244,7 +245,10 @@ public class FXMLDocumentController implements Initializable {
         rowCount = 10;
         gameOver = false;
     }
-    
+    /**
+     * private helper method to show the answer set
+     * @param answer_set 
+     */
     private void show_answer_set(byte[] answer_set){
         row = new Circle[]{new Circle(13.5), new Circle(13.5), new Circle(13.5), new Circle(13.5)};
         int col = 0;
