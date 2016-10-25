@@ -104,7 +104,9 @@ public class FXMLDocumentController implements Initializable {
     private byte[] answer_set;
     private byte[] start_message;
 
-    public FXMLDocumentController() {}
+    public FXMLDocumentController() {
+        super();
+    }
 
     
     @FXML
@@ -161,7 +163,7 @@ public class FXMLDocumentController implements Initializable {
             show_answer_set(answer_set);
             displayEndLabel(true);
             // TODO disable onAction for guess button, don't forget to reenable it
-            // Smoke some dank kush
+            btnGuess.setDisable(true);
             return;
         }
         display_clues(clues);
@@ -185,6 +187,8 @@ public class FXMLDocumentController implements Initializable {
         
         if(rowCount != 0)
             addCirclesToRow();
+        // reset the guess array after sending it to the server.
+        guessArray = new int[4];
         
     }
     
@@ -196,6 +200,7 @@ public class FXMLDocumentController implements Initializable {
         }
         return win;
     }
+
 
    @FXML
     private void handleHelpClick(ActionEvent event) throws IOException {
@@ -369,12 +374,7 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        client = new MMClient();
-//        try {
-//            client.playGame();
-//        } catch (IOException ex) {
-//            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
         client = new Client();
         try {
             client.createSocket();
@@ -387,6 +387,9 @@ public class FXMLDocumentController implements Initializable {
         selected = btnRed;
         currentColor = 2;
         addCirclesToRow();
-
+    }
+    
+    public void setClient(Client c){
+        this.client = c;
     }
 }
