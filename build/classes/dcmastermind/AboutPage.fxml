@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcmastermind.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcmastermind.PopupController">
    <children>
       <Label layoutX="222.0" layoutY="14.0" text="How to Play Mastermind" textAlignment="CENTER">
          <font>
@@ -32,7 +32,7 @@
             </Text>
          </children>
       </TextFlow>
-      <Button fx:id="btnCloseHelp" layoutX="255.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleHelpClick" text="Back to Game" />
+      <Button fx:id="btnCloseHelp" layoutX="255.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleCloseClick" text="Back to Game" />
       <Label layoutX="136.0" layoutY="29.0" text="By: Rafia Anwar, Evan Glicakis, and Seaim Khan" textAlignment="CENTER">
          <font>
             <Font name="Monospaced Regular" size="12.0" />

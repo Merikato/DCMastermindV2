@@ -197,21 +197,16 @@ public class FXMLDocumentController implements Initializable {
         return win;
     }
 
-    @FXML
+   @FXML
     private void handleHelpClick(ActionEvent event) throws IOException {
         Stage stage;
         Scene scene;
-        if (event.getSource().equals(btnOpenHelp)) {
-            stage = new Stage();
-            Parent parent = FXMLLoader.load(getClass().getResource("AboutPage.fxml"));
-            scene = new Scene(parent);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } else if (event.getSource().equals(btnCloseHelp)) {
-            stage = (Stage) btnCloseHelp.getScene().getWindow();
-            stage.close();
-        }
+        stage = new Stage();
+        Parent parent = FXMLLoader.load(PopupController.class.getResource("AboutPage.fxml"));
+        scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
     @FXML
