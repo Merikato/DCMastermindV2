@@ -138,7 +138,13 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleGuessClick(ActionEvent event) throws IOException {
-        System.out.println(Arrays.toString(guessArray));
+        //System.out.println(Arrays.toString(guessArray));
+        // Checks if the guess is complete before sending to the server.
+        for(int i : guessArray){
+            if(i == 0){
+                return;
+            }
+        }
         // Disable event listener for the current row of colour to avoid user
         // changing them.
         for(Circle c : row){
@@ -210,31 +216,46 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleNewGameClick(ActionEvent event) {
+        if(label.isVisible()){
+            try {
+                //let the server know we are ending the game.
+                mmp.writePacket(new byte[]{0x22,0,0,0});
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         resetGame();
         try {
             client.startGame();
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        addCirclesToRow();
     }
 
     private void resetGame() {
         ObservableList<Node> boardContent = gameboard.getChildren();
-
+        
+        int row = 10;
         for (Node content : boardContent) {
-            if (content instanceof Circle) {
+            if (content instanceof Circle){
+                System.out.println(content);
                 Circle circle = (Circle) content;
                 circle.setFill(Color.TRANSPARENT);
                 circle.setStrokeWidth(1);
                 circle.setVisible(false);
                 circle.setDisable(false);
-                if (GridPane.getRowIndex(content) == 10) {
-                    circle.setVisible(true);
-                }
-            } else if (content instanceof HBox) {
+//                if (GridPane.getRowIndex(content) == 10) {
+//                    circle.setVisible(true);
+//                }
+//                boardContent.remove(circle);
+//                row--;
+                
+            }else if (content instanceof HBox) {
                 HBox hbox = (HBox) content;
                 hbox.setVisible(false);
             }
+//            row--;
             
         }
 
