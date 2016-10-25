@@ -230,6 +230,11 @@ public class FXMLDocumentController implements Initializable {
                 HBox hbox = (HBox) content;
                 hbox.setVisible(false);
             }
+            try {
+                client.startGame();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         gameboard.setDisable(false);
@@ -253,7 +258,12 @@ public class FXMLDocumentController implements Initializable {
         }
         
     }
-    
+    /**
+     * private helper method to turn ints into their color code value 
+     * for displaying the answer set's circles.
+     * @param i
+     * @return 
+     */
     private Color int_to_color(int i){
         switch(i){
             case 2: return Color.RED;
