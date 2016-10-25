@@ -259,13 +259,4 @@ public class MMServerSession {
                 return -1;
         }
     }
-    
-    
-    /*private void checkAnswers(int[] clientAnswers, int[] answerSet){
-        for(int i = 0; i < clientAnswers.length; i++){
-            
-        }
-        
-    } Will do after clue generation if needed*/
-    
 }

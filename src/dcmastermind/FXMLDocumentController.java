@@ -104,6 +104,9 @@ public class FXMLDocumentController implements Initializable {
     private byte[] answer_set;
     private byte[] start_message;
 
+    public FXMLDocumentController() {}
+
+    
     @FXML
     private void handleColorClick(MouseEvent event) {
 
