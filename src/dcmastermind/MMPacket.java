@@ -68,10 +68,6 @@ public class MMPacket {
     public void writePacket(byte[] bytes)throws IOException{
         out.write(bytes);
     }
-
-    void writePacket(int[] answerSet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     
 }
