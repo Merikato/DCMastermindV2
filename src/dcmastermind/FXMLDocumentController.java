@@ -219,6 +219,7 @@ public class FXMLDocumentController implements Initializable {
         if(label.isVisible()){
             try {
                 //let the server know we are ending the game.
+                System.out.println("new game -- client");
                 mmp.writePacket(new byte[]{0x22,0,0,0});
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -262,6 +263,7 @@ public class FXMLDocumentController implements Initializable {
         gameboard.setDisable(false);
         btnGuess.setDisable(false);
         guessArray = new int[]{0,0,0,0};
+        clues = new byte[4];
         label.setVisible(false);
         rowCount = 10;
         gameOver = false;
